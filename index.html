@@ -1,63 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FATIR BARNIK - Perabot & Peralatan Rumah Tangga</title>
-<script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50">
-<header class="bg-white p-3 flex justify-between border-b sticky top-0 z-10">
-<b class="text-green-700">FB - FATIR BARNIK</b>
-<button onclick="document.getElementById('cart').classList.remove('hidden')" class="bg-green-600 text-white px-4 py-1.5 rounded-full text-sm">🛒 <span id="c1">0</span></button>
-</header>
-
-<div class="p-3 max-w-xl mx-auto">
-<div class="bg-green-700 text-white rounded-2xl p-4 text-center">
-<h1 class="text-xl font-bold">FATIR BARNIK</h1>
-<p class="text-sm">Perabot & Peralatan Rumah Tangga</p>
-<p class="text-xs mt-2 opacity-80">Jl. Raya Pebayuran Kp. Kramat RT18/06 Bekasi - WA 0896-8200-6784</p>
-</div>
-
-<div id="grid" class="mt-4 grid grid-cols-2 gap-3"></div>
-</div>
-
-<div id="cart" class="fixed inset-0 bg-black/60 hidden z-50">
-<div class="bg-white h-full max-w-sm ml-auto p-4 flex flex-col">
-<div class="flex justify-between border-b pb-2"><b>Keranjang</b><button onclick="document.getElementById('cart').classList.add('hidden')">X Tutup</button></div>
-<div id="list" class="flex-1 overflow-auto py-3 space-y-2"></div>
-<div class="border-t pt-3">
-<p class="font-bold mb-2">Total: <span id="total">Rp 0</span></p>
-<input id="nama" placeholder="Nama Anda" class="w-full border p-2.5 rounded-xl mb-2 text-sm">
-<button onclick="kirim()" class="w-full bg-green-600 text-white py-3 rounded-full font-bold">Pesan via WA</button>
-</div>
-</div>
-</div>
-
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FATIR BARNIK</title><script src="https://cdn.tailwindcss.com"></script></head>
+<body class="p-4">
+<div class="bg-green-600 text-white p-4 rounded-xl text-center font-bold">FATIR BARNIK<br><span class="text-xs">Perabot & Peralatan Rumah Tangga</span></div>
+<div id="g" class="grid grid-cols-2 gap-2 mt-4"></div>
 <script>
-let produk=[
-{n:"Barnik Jumbo Merah",h:15000,i:"🧺"},
-{n:"Ember + Gayung",h:25000,i:"🪣"},
-{n:"Rak Piring 2 Susun",h:75000,i:"🍽️"},
-{n:"Sapu + Pengki",h:22000,i:"🧹"},
-{n:"Toples Kaca Set 3",h:45000,i:"🫙"},
-{n:"Keranjang Laundry",h:35000,i:"🧺"},
-{n:"Pel Peras",h:38000,i:"🧹"},
-{n:"Rak Sepatu 4 Susun",h:55000,i:"👟"}
-];
-let cart=[];
-function rp(x){return "Rp "+x.toLocaleString("id-ID")}
-function render(){
-let g=document.getElementById("grid");
-g.innerHTML="";
-produk.forEach((p,idx)=>{
-g.innerHTML+=`<div class="bg-white border rounded-2xl p-3"><div class="bg-gray-50 rounded-xl h-24 flex items-center justify-center text-4xl">${p.i}</div><p class="font-bold text-xs mt-2">${p.n}</p><p class="text-green-600 font-bold text-sm">${rp(p.h)}</p><button onclick="add(${idx})" class="mt-2 w-full bg-black text-white py-2 rounded-full text-xs">+ Keranjang</button></div>`;
-});
-}
-function add(i){let p=produk[i];let c=cart.find(a=>a.n==p.n);if(c)c.qty++;else cart.push({...p,qty:1});up();document.getElementById("cart").classList.remove("hidden")}
-function up(){let j=cart.reduce((a,b)=>a+b.qty,0);document.getElementById("c1").innerText=j;let t=0,h="";cart.forEach((it,k)=>{t+=it.h*it.qty;h+=`<div class="bg-gray-50 p-3 rounded-xl flex justify-between text-sm"><div>${it.n}<br><b>${it.qty}x ${rp(it.h)}</b></div><button onclick="del(${k})" class="text-red-500">Hapus</button></div>`});document.getElementById("list").innerHTML=h||"<p class='text-center text-gray-400 mt-10'>Kosong, tambah dulu</p>";document.getElementById("total").innerText=rp(t)}
-function del(k){cart.splice(k,1);up()}
-function kirim(){if(!cart.length)return alert("Tambah produk dulu!");let nm=document.getElementById("nama").value||"Pelanggan";let tot=cart.reduce((a,b)=>a+b.h*b.qty,0);let msg=cart.map(c=>`- ${c.n} x${c.qty}`).join("%0A");window.open(`https://wa.me/6289682006784?text=Halo Fatir Barnik! Saya ${nm} mau pesan:%0A${msg}%0ATotal ${rp(tot)}`,"_blank")}
-render();up();
+let p=[["Barnik Jumbo",15000],["Ember Besar",25000],["Rak Piring",75000],["Sapu Set",22000]];
+let c=[];
+let g=document.getElementById("g");
+g.innerHTML=p.map((x,i)=>`<div class="border p-3 rounded-xl bg-white text-center"><div class="text-3xl">🧺</div><b class="text-xs">${x[0]}</b><br><span class="text-green-600 font-bold">Rp ${x[1].toLocaleString()}</span><br><button onclick="c.push('${x[0]}');alert(c.join(', ')+' masuk keranjang! WA: 0896-8200-6784')" class="bg-black text-white text-xs px-3 py-2 rounded-full mt-2 w-full">+ Keranjang</button></div>`).join("");
 </script>
-</body>
-</html>
+</body></html>
