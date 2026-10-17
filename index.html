@@ -1,11 +1,105 @@
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>FATIR BARNIK</title><script src="https://cdn.tailwindcss.com"></script></head>
-<body class="p-4">
-<div class="bg-green-600 text-white p-4 rounded-xl text-center font-bold">FATIR BARNIK<br><span class="text-xs">Perabot & Peralatan Rumah Tangga</span></div>
-<div id="g" class="grid grid-cols-2 gap-2 mt-4"></div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FATIR BARNIK - Peralatan Rumah Tangga</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+<header class="bg-white p-3 flex justify-between items-center border-b sticky top-0 z-10">
+<b class="text-green-700 text-sm">FB - FATIR BARNIK</b>
+<div class="flex gap-2">
+<button onclick="document.getElementById('profile').classList.remove('hidden')" class="bg-gray-100 px-3 py-1.5 rounded-full text-xs">👤 Profile</button>
+<button onclick="document.getElementById('tambah').classList.remove('hidden')" class="bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs">+ Produk</button>
+<button onclick="document.getElementById('cart').classList.remove('hidden')" class="bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">🛒 <span id="c1">0</span></button>
+</div>
+</header>
+
+<div class="max-w-2xl mx-auto p-3">
+<div class="bg-green-700 rounded-2xl p-5 text-white text-center">
+<h1 class="text-2xl font-extrabold">FATIR BARNIK</h1>
+<p class="font-semibold mt-1">Peralatan Rumah Tangga</p>
+<p class="text-xs mt-2 opacity-90">Jl. Raya Pebayuran Kp. Kramat RT18/06<br>Kedungwaringin - Bekasi</p>
+<p class="text-xs mt-1">WA: 0896-8200-6784</p>
+</div>
+<div id="grid" class="mt-4 grid grid-cols-2 gap-3"></div>
+</div>
+
+<!-- KERANJANG -->
+<div id="cart" class="fixed inset-0 bg-black/60 hidden z-50">
+<div class="bg-white h-full max-w-sm ml-auto p-4 flex flex-col">
+<div class="flex justify-between border-b pb-2"><b>Keranjang (<span id="c2">0</span>)</b><button onclick="document.getElementById('cart').classList.add('hidden')" class="font-bold">X</button></div>
+<div id="list" class="flex-1 overflow-auto py-3 space-y-2"></div>
+<div class="border-t pt-3">
+<p class="font-bold">Total: <span id="total">Rp 0</span></p>
+<input id="nama" placeholder="Nama Anda" class="w-full border p-2.5 rounded-xl mt-2 text-sm">
+<button onclick="kirim()" class="w-full bg-green-600 text-white py-3 rounded-full font-bold mt-2">Pesan via WA</button>
+</div>
+</div>
+</div>
+
+<!-- TAMBAH PRODUK -->
+<div id="tambah" class="fixed inset-0 bg-black/60 hidden z-50">
+<div class="bg-white max-w-sm mx-auto mt-20 p-5 rounded-2xl">
+<h3 class="font-bold mb-3">Tambah Produk Baru</h3>
+<input id="pNama" placeholder="Nama produk, contoh: Baskom Besar" class="w-full border p-2.5 rounded-xl mb-2 text-sm">
+<input id="pHarga" type="number" placeholder="Harga, contoh: 20000" class="w-full border p-2.5 rounded-xl mb-2 text-sm">
+<select id="pIcon" class="w-full border p-2.5 rounded-xl mb-3 text-sm">
+<option value="🧺">🧺 Keranjang/Barnik</option>
+<option value="🪣">🪣 Ember</option>
+<option value="🍽️">🍽️ Piring/Rak</option>
+<option value="🧹">🧹 Sapu/Pel</option>
+<option value="🫙">🫙 Toples</option>
+<option value="👟">👟 Rak Sepatu</option>
+</select>
+<div class="flex gap-2">
+<button onclick="document.getElementById('tambah').classList.add('hidden')" class="flex-1 bg-gray-100 py-2.5 rounded-full text-sm">Batal</button>
+<button onclick="tambahProduk()" class="flex-1 bg-blue-600 text-white py-2.5 rounded-full text-sm font-bold">Simpan</button>
+</div>
+</div>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="fixed inset-0 bg-black/60 hidden z-50">
+<div class="bg-white max-w-sm mx-auto mt-20 p-6 rounded-2xl">
+<div class="text-center">
+<div class="w-16 h-16 bg-green-600 rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">FB</div>
+<h2 class="font-bold text-lg mt-3">FATIR BARNIK</h2>
+<p class="text-green-700 text-sm font-semibold">Peralatan Rumah Tangga</p>
+</div>
+<div class="mt-5 space-y-3 text-sm">
+<p>📍 <b>Alamat:</b><br>Jl. Raya Pebayuran Kp. Kramat RT18/06, Kedungwaringin, Bekasi</p>
+<p>📞 <b>WA:</b> 0896-8200-6784</p>
+<p>⏰ <b>Buka:</b> Setiap Hari 07.00 - 20.00 WIB</p>
+<p>🚚 <b>Layanan:</b> Grosir & Eceran, Siap Kirim, Harga Terjangkau</p>
+</div>
+<a href="https://wa.me/6289682006784" class="block text-center w-full bg-green-600 text-white py-3 rounded-full font-bold mt-5">Chat WA Sekarang</a>
+<button onclick="document.getElementById('profile').classList.add('hidden')" class="w-full bg-gray-100 py-2.5 rounded-full text-sm mt-2">Tutup</button>
+</div>
+</div>
+
 <script>
-let p=[["Barnik Jumbo",15000],["Ember Besar",25000],["Rak Piring",75000],["Sapu Set",22000]];
-let c=[];
-let g=document.getElementById("g");
-g.innerHTML=p.map((x,i)=>`<div class="border p-3 rounded-xl bg-white text-center"><div class="text-3xl">🧺</div><b class="text-xs">${x[0]}</b><br><span class="text-green-600 font-bold">Rp ${x[1].toLocaleString()}</span><br><button onclick="c.push('${x[0]}');alert(c.join(', ')+' masuk keranjang! WA: 0896-8200-6784')" class="bg-black text-white text-xs px-3 py-2 rounded-full mt-2 w-full">+ Keranjang</button></div>`).join("");
+let produk=JSON.parse(localStorage.getItem('fb_produk')||'null')||[
+{n:"Barnik Jumbo Merah",h:15000,e:"🧺"},
+{n:"Ember + Gayung",h:25000,e:"🪣"},
+{n:"Rak Piring 2 Susun",h:75000,e:"🍽️"},
+{n:"Sapu + Pengki",h:22000,e:"🧹"},
+{n:"Toples Kaca Set 3",h:45000,e:"🫙"},
+{n:"Keranjang Laundry",h:35000,e:"🧺"}
+];
+let cart=[];
+function save(){localStorage.setItem('fb_produk',JSON.stringify(produk))}
+function render(){
+document.getElementById('grid').innerHTML=produk.map((p,i)=>`<div class="bg-white border rounded-2xl p-3"><div class="bg-gray-50 rounded-xl h-24 flex items-center justify-center text-4xl">${p.e}</div><p class="font-bold text-xs mt-2">${p.n}</p><p class="text-green-600 font-bold text-sm">Rp ${p.h.toLocaleString('id-ID')}</p><button onclick="add(${i})" class="mt-2 w-full bg-black text-white py-2 rounded-full text-xs font-bold">+ Keranjang</button><button onclick="hapusP(${i})" class="mt-1 w-full text-red-500 text-[10px]">Hapus</button></div>`).join('');
+}
+function add(i){let p=produk[i];let c=cart.find(x=>x.n==p.n);if(c)c.q++;else cart.push({n:p.n,h:p.h,q:1});up();document.getElementById('cart').classList.remove('hidden')}
+function up(){document.getElementById('c1').innerText=cart.reduce((a,b)=>a+b.q,0);document.getElementById('c2').innerText=cart.reduce((a,b)=>a+b.q,0);let t=0,h="";cart.forEach((it,k)=>{t+=it.h*it.q;h+=`<div class="bg-gray-50 p-3 rounded-xl flex justify-between text-sm"><div><b>${it.n}</b><br>${it.q} x Rp ${it.h.toLocaleString()}</div><div class="flex items-center gap-2"><button onclick="chg(${k},-1)" class="w-6 h-6 bg-white border rounded-full">-</button><span>${it.q}</span><button onclick="chg(${k},1)" class="w-6 h-6 bg-white border rounded-full">+</button><button onclick="del(${k})" class="ml-2 text-red-500">X</button></div></div>`});document.getElementById('list').innerHTML=h||"<p class='text-center text-gray-400 mt-10'>Kosong - tambah produk dulu</p>";document.getElementById('total').innerText="Rp "+t.toLocaleString('id-ID')}
+function chg(k,d){cart[k].q+=d;if(cart[k].q<=0)cart.splice(k,1);up()}
+function del(k){cart.splice(k,1);up()}
+function tambahProduk(){let nm=document.getElementById('pNama').value;let hg=parseInt(document.getElementById('pHarga').value);let ic=document.getElementById('pIcon').value;if(!nm||!hg)return alert('Isi nama & harga!');produk.push({n:nm,h:hg,e:ic});save();render();document.getElementById('pNama').value='';document.getElementById('pHarga').value='';document.getElementById('tambah').classList.add('hidden')}
+function hapusP(i){if(confirm('Hapus produk '+produk[i].n+'?')){produk.splice(i,1);save();render()}}
+function kirim(){if(!cart.length)return alert('Keranjang kosong!');let nm=document.getElementById('nama').value||'Pelanggan';let tot=cart.reduce((a,b)=>a+b.h*b.q,0);let msg=cart.map(c=>`- ${c.n} x${c.q}`).join('%0A');window.open(`https://wa.me/6289682006784?text=Halo Fatir Barnik! Saya ${nm} mau pesan:%0A${msg}%0ATotal Rp ${tot.toLocaleString('id-ID')}`,'_blank')}
+render();
 </script>
-</body></html>
+</body>
+</html>
