@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FATIR BARNIK - Peralatan Rumah Tangga</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50">
-<header class="bg-white p-3 flex justify-between items-center border-b sticky top-0 z-10">
-<b class="text-green-700 text-sm">FB - FATIR BARNIK</b>
-<div class="flex gap-2">
-<button onclick="show('profile')" class="bg-gray-100 px-3 py-1.5 rounded-full text-xs">👤 Profile</button>
-<button onclick="show('tambah')" class="bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs">+ Produk</button>
-<button onclick="show('cart')" class="bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">🛒 <span id="c1">0</span></button>
+<body class="bg-[#f6f7f6]">
+<header class="bg-white border-b sticky top-0 z-40">
+<div class="max-w-6xl mx-auto px-3 py-2.5 flex justify-between">
+<div class="flex gap-2 items-center"><div class="w-9 h-9 bg-green-700 rounded-xl flex items-center justify-center text-white font-bold">FB</div><div><b class="text-green-800 text-[13px] block">FATIR BARNIK</b><span class="text-[10px] text-gray-500">Peralatan Rumah Tangga</span></div></div>
+<div class="flex gap-1.5 items-center"><button onclick="openM('profile')" class="w-8 h-8 bg-gray-100 rounded-full text-sm">👤</button><button onclick="openM('add')" class="bg-blue-600 text-white text-xs px-3 py-2 rounded-full">+ Produk</button><button onclick="openM('cart')" class="bg-green-700 text-white text-xs px-3.5 py-2 rounded-full font-bold">🛒 <span id="badge">0</span></button></div>
 </div>
+<div class="max-w-6xl mx-auto px-3 pb-2.5 flex gap-2"><input id="search" oninput="render()" placeholder="Cari barnik, ember, sapu..." class="flex-1 bg-gray-100 rounded-full px-4 py-2 text-xs outline-none"><select id="kat" onchange="render()" class="bg-gray-100 rounded-full px-3 py-2 text-xs"><option value="all">Semua</option><option value="Barnik">Barnik</option><option value="Ember">Ember</option><option value="Dapur">Dapur</option><option value="Kebersihan">Kebersihan</option><option value="Penyimpanan">Penyimpanan</option></select></div>
 </header>
-
-<div class="max-w-2xl mx-auto p-3">
-<div class="bg-green-700 rounded-2xl p-5 text-white text-center">
-<h1 class="text-2xl font-bold">FATIR BARNIK</h1>
-<p class="font-semibold">Peralatan Rumah Tangga</p>
-<p class="text-xs mt-2">Jl. Raya Pebayuran Kp. Kramat RT18/06 - Bekasi - WA 0896-8200-6784</p>
-</div>
-<div id="grid" class="mt-4 grid grid-cols-2 gap-3"></div>
-</div>
-
-<!-- TAMBAH PRODUK DARI GALERI -->
-<div id="tambah" class="fixed inset-0 bg-black/60 hidden z-50 p-4 overflow-auto">
-<div class="bg-white max-w-sm mx-auto mt-10 p-5 rounded-2xl">
-<h3 class="font-bold mb-3">Tambah Produk dari Galeri</h3>
-<input id="pNama" placeholder="Nama produk" class="w-full border p-3 rounded-xl mb-2 text-sm">
-<input id="pHarga" type="number" placeholder="Harga contoh: 25000" class="w-full border p-3 rounded-xl mb-2 text-sm">
-<label class="block w-full border-2 border-dashed rounded-xl p-3 text-center text-sm mb-2">
-<span id="fileLabel">📷 Klik pilih foto dari Galeri HP</span>
-<input id="pFile" type="file" accept="image/*" class="hidden" onchange="previewFile()">
-<img id="preview" class="hidden w-full h-32 object-cover rounded-xl mt-2">
-</label>
-<div class="flex gap-2 mt-3">
-<button onclick="hide('
+<main class="max-w-6xl mx-auto px-3">
+<div class="mt-3 bg-gradient-to-br from-green-700 to-green-600 rounded-[20px] p-5 text-white"><h1 class="text-2xl font-extrabold">FATIR BARNIK</h1><p class="text-sm font-semibold">Peralatan Rumah Tangga</p><p class="text-[11px] mt-3 opacity-80">📍 Jl. Raya Pebayuran Kp. Kramat RT18/06, Kedungwaringin - Bekasi<br>📞 0896-8200-6784 • Buka Setiap Hari 07.00-20.00</p><div class="mt-3 flex gap-2"><a href="https://wa.me/6289682006784" class="bg-white text-green-700 px-4 py-2 rounded-full text-xs font-bold">Chat WA</a><button onclick="openM('profile')" class="bg-black/20 px-4 py-2 rounded-full text-xs">Profile Toko</button></div></div>
+<div class="mt-3 bg-white border rounded-2xl p-3 flex justify-between text-[11px] text-center"><div><b class="block text-green-700">Grosir & Ecer</b>Harga Bersaing</div><div><b class="block text-green-700">Siap Kirim</b>Bekasi</div><div><b class="block text-green-700">Pesan WA</b>Fast Respon</div></div>
+<div id="grid" class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3 pb-20"></div>
+</main>
+<div id="add" class="fixed inset-0 bg-black/60 hidden z-50 p-3 overflow-auto"><div class="bg-white max-w-md mx-auto mt-6 p-5 rounded-[20px]"><h3 class="font-bold text-sm">Tambah Produk Dari Galeri HP</h3><input id="fNama" placeholder="Nama produk" class="mt-3 w-full border rounded-xl p-3 text-xs"><input id="fHarga" type="number" placeholder="Harga" class="mt-2 w-full border rounded-xl p-3 text-xs"><select id="fKat" class="mt-2 w-full border rounded-xl p-3 text-xs"><option value="Barnik">Barnik</option><option value="Ember">Ember</option><option value="Dapur">Dapur</option><option value="Kebersihan">Kebersihan</option><option value="Penyimpanan">Penyimpanan</option></select><label class="mt-2 block border-2 border-dashed rounded-xl p-4 text-center"><span id="fLabel" class="text-xs">📷 Tap pilih foto dari Galeri HP</span><input id="fFile" type="file" accept="image/*" class="hidden" onchange="handleFile()"><img id="fPreview" class="hidden w-full h-40 object-cover rounded-xl mt-2"></label><textarea id="fDesc" placeholder="Deskripsi" class="mt-2 w-full border rounded-xl p-3 text-xs h-16"></textarea><div class="mt-4 flex gap-2"><button onclick="closeM('add')" class="flex-1 bg-gray-100 py-3 rounded-full text-xs">Batal</button><button onclick="saveProduct()" class="flex-1 bg-blue-600 text-white py-3 rounded-full text-xs font-bold">Simpan</button></div></div></div>
+<div id="cart" class="fixed inset-0 bg-black/60 hidden z-50"><div class="bg-white h-full max-w-sm ml-auto flex flex-col"><div class="p-4 border-b flex justify-between"><b class="text-sm">Keranjang (<span id="badge2">0</span>)</b><button onclick="closeM('cart')" class="w-8 h-8 bg-gray-100 rounded-full">✕</button></div><div id="cartList" class="flex-1 overflow-auto p-3 space-y-2"></div><div class="p-4 border-t"><div class="flex justify-between text-sm font-bold"><span>Total</span><span id="total" class="text-green-700">Rp 0</span></div><input id="custName" placeholder="Nama Anda" class="mt-3 w-full border rounded-xl p-3 text-xs"><input id="custAddr" placeholder="Alamat (opsional)" class="mt-2 w-full border rounded-xl p-3 text-xs"><button onclick="checkoutWA()" class="mt-3 w-full bg-green-700 text-white py-3.5 rounded-full text-sm font-bold">Checkout via WhatsApp</button></div></div></div>
+<div id="profile" class="fixed inset-0 bg-black/60 hidden z-50 p-3"><div class="bg-white max-w-md mx-auto mt-10 p-6 rounded-[24px] text-center"><div class="w-20 h-20 bg-green-700 rounded-2xl mx-auto flex items-center justify-center text-white font-bold text-2xl">FB</div><h2 class="font-bold text-lg mt-3">FATIR BARNIK</h2><p class="text-green-700 text-sm">Peralatan Rumah Tangga</p><div class="mt-4 text-left space-y-3 text-xs bg-gray-50 p-4 rounded-2xl"><p>📍 <b>Alamat</b><br>Jl. Raya Pebayuran Kp. Kramat RT18/06, Kedungwaringin Bekasi</p><p>📞 <b>WA</b><br>0896-8200-6784</p><p>⏰ <b>Buka</b> 07.00-20.00 Setiap Hari</p><p>🚚 Grosir & Eceran - Siap Kirim - Harga Bersaing</p></div><a href="https://wa.me/6289682006784" class="block bg-green-700 text-white py-3 rounded-full font-bold text-sm mt-4">Chat WA Sekarang</a><button onclick="closeM('profile')" class="w-full py-2 text-xs text-gray-500 mt-2">Tutup</button></div></div>
+<div id="detail" class="fixed inset-0 bg-black/60 hidden z-50 p-3"><div class="bg-white max-w-md mx-auto mt-10 rounded-[20px] overflow-hidden"><img id="dImg" class="w-full h-64 object-cover bg-gray-50"><div class="p-4"><h3 id="dName" class="font-bold text-sm"></h3><p id="dCat" class="text-[10px] bg-green-50 text-green-700 inline-block px-2 py-1 rounded-full mt-1"></p><p id="dPrice" class="text-green-700 font-bold mt-2"></p><p id="dDesc" class="text-xs text-gray-600 mt-2"></p><div class="flex gap-2 mt-4"><button onclick="closeM('detail')" class="flex-1 bg-gray-100 py-3 rounded-full text-xs">Tutup</button><button id="dAdd" class="flex-1 bg-black text-white py-3 rounded-full text-xs font-bold">+ Keranjang</button></div></div></div></div>
+<footer class="bg-white border-t py-6 text-center text-[11px] text-gray-500"><b class="text-green-800">FATIR BARNIK - Peralatan Rumah Tangga</b><br>Jl. Raya Pebayuran - Bekasi • WA 0896-8200-6784</footer>
+<script>
+let tempData='';function openM(id){document.getElementById(id).classList.remove('hidden')}function closeM(id){document.getElementById(id).classList.add('hidden')}
+function handleFile(){let file=document.getElementById('fFile').files[0];if(!file)return;if(file.size>2*1024*1024){alert('Foto maksimal 2MB');return;}let reader=new FileReader();reader.onload=e=>{tempData=e.target.result;document.getElementById('fPreview').src=tempData;document.getElementById('fPreview').classList.remove('hidden');document.getElementById('fLabel').innerText='✅ Foto terpilih';};reader.readAsDataURL(file);}
+let products=JSON.parse(localStorage.getItem('fb_complete')||'null')||[{n:"Barnik Jumbo Merah",h:15000,k:"Barnik",d:"Barnik jumbo kuat",img:""},{n:"Ember Besar + Gayung",h:25000,k:"Ember",d:"Ember tebal + gayung",img:""},{n:"Baskom Set 3",h:20000,k:"Penyimpanan",d:"Baskom 3 ukuran",img:""},{n:"Rak Piring 2 Susun",h:75000,k:"Dapur",d:"Rak piring aluminium",img:""},{n:"Sapu + Pengki",h:22000,k:"Kebersihan",d:"Sapu ijuk + pengki tebal",img:""},{n:"Pel Peras",h:38000,k:"Kebersihan",d:"Pel modern",img:""},{n:"Toples Kaca Set 3",h:45000,k:"Dapur",d:"Toples kedap",img:""},{n:"Keranjang Laundry",h:35000,k:"Penyimpanan",d:"Keranjang baju",img:""}];
+let cart=JSON.parse(localStorage.getItem('fb_cart')||'[]');
+function saveP(){localStorage.setItem('fb_complete',JSON.stringify(products))}function saveC(){localStorage.setItem('fb_cart',JSON.stringify(cart))}
+function render(){let q=document.getElementById('search').value.toLowerCase();let kat=document.getElementById('kat').value;let grid=document.getElementById('grid');let filtered=products.filter(p=>{let okQ=!q||p.n.toLowerCase().includes(q);let okK=kat==='all'||p.k===kat;return okQ&&okK;});grid.innerHTML=filtered.map((p,idx)=>{let realIdx=products.indexOf(p);let img=p.img?`<img src="${p.img}" class="w-full h-28 object-cover">`:`<div class="w-full h-28 bg-gray-50 flex items-center justify-center text-3xl">${p.k==='Barnik'?'🧺':p.k==='Ember'?'🪣':p.k==='Dapur'?'🍽️':p.k==='Kebersihan'?'🧹':'📦'}</div>`;return `<div class="bg-white border rounded-2xl overflow-hidden"><div onclick="openDetail(${realIdx})" class="cursor-pointer">${img}</div><div class="p-3"><span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded-full">${p.k}</span><p class="font-semibold text-[12px] mt-1">${p.n}</p><p class="text-green-700 font-bold text-[13px]">Rp ${p.h.toLocaleString('id-ID')}</p><button onclick="addToCart(${realIdx})" class="mt-2 w-full bg-black text-white py-2 rounded-full text-[11px] font-bold">+ Keranjang</button><button onclick="deleteProduct(${realIdx})" class="mt-1 w-full text-[9px] text-red-400">Hapus</button></div></div>`;}).join('');updateBadge();}
+function openDetail(i){let p=products[i];document.getElementById('dImg').src=p.img||'';document.getElementById('dImg').style.display=p.img?'block':'none';document.getElementById('dName').innerText=p.n;document.getElementById('dCat').innerText=p.k;document.getElementById('dPrice').innerText='Rp '+p.h.toLocaleString('id-ID');document.getElementById('dDesc').innerText=p.d;document.getElementById('dAdd').onclick=()=>{addToCart(i);closeM('detail')};openM('detail');}
+function addToCart(i){let p=products[i];let f=cart.find(x=>x.n===p.n);if(f)f.q++;else cart.push({n:p.n,h:p.h,q:1,img:p.img});saveC();renderCart();updateBadge();openM('cart');}
+function renderCart(){let list=document.getElementById('cartList');let total=0;let html='';cart.forEach((it,k)=>{total+=it.h*it.q;html+=`<div class="bg-gray-50 rounded-2xl p-3 flex gap-3"><div class="w-12 h-12 bg-white rounded-xl overflow-hidden">${it.img?`<img src="${it.img}" class="w-full h-full object-cover">`:'🧺'}</div><div class="flex-1"><p class="text-xs font-semibold">${it.n}</p><p class="text-[11px] text-green-700 font-bold">Rp ${it.h.toLocaleString()}</p><div class="flex gap-2 mt-1"><button onclick="chg(${k},-1)" class="w-6 h-6 bg-white border rounded-full text-xs">-</button><span class="text-xs">${it.q}</span><button onclick="chg(${k},1)" class="w-6 h-6 bg-white border rounded-full text-xs">+</button><button onclick="remove(${k})" class="ml-2 text-[10px] text-red-500">Hapus</button></div></div></div>`;});list.innerHTML=html||"<p class='text-center text-xs text-gray-400 mt-10'>Keranjang kosong</p>";document.getElementById('total').innerText='Rp '+total.toLocaleString('id-ID');}
+function updateBadge(){let c=cart.reduce((a,b)=>a+b.q,0);document.getElementById('badge').innerText=c;document.getElementById('badge2').innerText=c;}
+function chg(k,d){cart[k].q+=d;if(cart[k].q<=0)cart.splice(k,1);saveC();renderCart();updateBadge();}
+function remove(k){cart.splice(k,1);saveC();renderCart();updateBadge();}
+function saveProduct(){let nm=document.getElementById('fNama').value.trim();let hg=parseInt(document.getElementById('fHarga').value);let k=document.getElementById('fKat').value;let d=document.getElementById('fDesc').value.trim()||'Peralatan rumah tangga berkualitas';if(!nm||!hg)return alert('Nama & harga wajib!');if(!tempData)return alert('Pilih foto dari galeri!');products.unshift({n:nm,h:hg,k:k,d:d,img:tempData});saveP();document.getElementById('fNama').value='';document.getElementById('fHarga').value='';document.getElementById('fDesc').value='';document.getElementById('fFile').value='';document.getElementById('fPreview').classList.add('hidden');document.getElementById('fLabel').innerText='📷 Tap pilih foto';tempData='';closeM('add');render();alert('Produk berhasil ditambahkan!');}
+function deleteProduct(i){if(confirm('Hapus '+products[i].n+'?')){products.splice(i,1);saveP();render();}}
+function checkoutWA(){if(!cart.length)return alert('Keranjang kosong!');let name=document.getElementById('custName').value.trim()||'Pelanggan';let addr=document.getElementById('custAddr').value.trim();let total=cart.reduce((a,b)=>a+b.h*b.q,0);let items=cart.map(c=>`- ${c.n} x${c.q} = Rp ${(c.h*c.q).toLocaleString('id-ID')}`).join('%0A');let text=`Halo FATIR BARNIK!%0A%0ASaya ${name} mau pesan:%0A${items}%0A%0ATotal: Rp ${total.toLocaleString('id-ID')}%0A${addr?`Alamat: ${addr}%0A`:''}Terima kasih!`;window.open(`https://wa.me/6289682006784?text=${text}`,'_blank');}
+render();renderCart();
+</script>
+</body>
+                                                                                                                                                                                                                                       </html>
