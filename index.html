@@ -1,1 +1,50 @@
-
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FATIR BARNIK - Toko Peralatan Rumah Tangga</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head><body class="bg-[#f8faf8]">
+<header class="bg-white border-b sticky top-0 z-30">
+<div class="max-w-6xl mx-auto px-3 py-3 flex justify-between items-center">
+<div class="font-black text-green-700 text-lg">FATIR BARNIK</div>
+<div class="flex gap-2"><button onclick="location.href='?admin=1'" class="bg-green-600 text-white px-3 py-1 rounded text-sm">Admin</button>
+<button onclick="document.getElementById('cart').classList.remove('hidden')" class="bg-orange-500 text-white px-3 py-1 rounded text-sm">Keranjang (<span id="cartN">0</span>)</button></div></div>
+<div class="max-w-6xl mx-auto px-3 pb-3 flex gap-2"><input id="q" oninput="render()" placeholder="Cari produk..." class="flex-1 border rounded-full px-4 py-2">
+<select id="cat" onchange="render()" class="border rounded-full px-3 py-2"><option value="">Semua</option><option>Dapur</option><option>Kamar</option><option>Kebersihan</option></select></div>
+</header>
+<main class="max-w-6xl mx-auto p-3">
+<div class="bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-2xl p-6 mb-4"><h1 class="text-2xl font-black">Peralatan Rumah Tangga Lengkap</h1><p>Kualitas Terbaik, Harga Terjangkau</p></div>
+<div id="grid" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+</main>
+<div id="cart" class="hidden fixed inset-0 bg-black/50 z-50 p-3"><div class="bg-white max-w-md mx-auto rounded-xl p-4 mt-10"><h2 class="font-bold mb-3">Keranjang</h2><div id="cartItems"></div><div class="mt-3 flex gap-2"><button onclick="checkout()" class="flex-1 bg-green-600 text-white py-2 rounded">Checkout WA</button><button onclick="document.getElementById('cart').classList.add('hidden')" class="px-4 border rounded">Tutup</button></div></div></div>
+<script>
+const defaultProducts=[
+{id:1,name:"Kipas Mini Karakter",price:30000,stock:50,cat:"Kamar",img:"📦"},
+{id:2,name:"Tempat Sabun Batang",price:15000,stock:100,cat:"Kamar",img:"📦"},
+{id:3,name:"Gantungan Baju 10pcs",price:12000,stock:200,cat:"Kamar",img:"📦"},
+{id:4,name:"Sapu Lantai Ijuk",price:25000,stock:30,cat:"Kebersihan",img:"🧹"},
+{id:5,name:"Gayung Mandi Besar",price:10000,stock:80,cat:"Kamar",img:"🪣"},
+{id:6,name:"Botol Minum 1L",price:18000,stock:60,cat:"Dapur",img:"🍶"}
+];
+let products=JSON.parse(localStorage.getItem('fatir_products')||'null')||defaultProducts;
+if(products.length===0)products=defaultProducts;
+let cart=JSON.parse(localStorage.getItem('fatir_cart')||'[]');
+function save(){localStorage.setItem('fatir_products',JSON.stringify(products));localStorage.setItem('fatir_cart',JSON.stringify(cart));}
+function render(){
+ const q=document.getElementById('q').value.toLowerCase();
+ const c=document.getElementById('cat').value;
+ const f=products.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(!c||p.cat===c));
+ document.getElementById('grid').innerHTML=f.map(p=>`
+ <div class="bg-white rounded-xl border p-3 flex flex-col">
+ <div class="text-4xl text-center py-4 bg-gray-50 rounded-lg mb-2">${p.img}</div>
+ <div class="font-bold text-sm">${p.name}</div>
+ <div class="text-xs text-gray-500">${p.cat} • Stok ${p.stock}</div>
+ <div class="text-green-700 font-black mt-1">Rp ${p.price.toLocaleString('id-ID')}</div>
+ <button onclick="addCart(${p.id})" class="mt-2 bg-green-600 text-white text-sm py-1.5 rounded-full">+ Keranjang</button>
+ </div>`).join('');
+ document.getElementById('cartN').innerText=cart.reduce((s,i)=>s+i.qty,0);
+}
+function addCart(id){const p=products.find(x=>x.id===id);const e=cart.find(x=>x.id===id);if(e)e.qty++;else cart.push({id,qty:1,name:p.name,price:p.price});save();render();renderCart();alert('Ditambahkan!');}
+function renderCart(){document.getElementById('cartItems').innerHTML=cart.map(i=>`<div class="flex justify-between py-1"><span>${i.name} x${i.qty}</span><span>Rp ${(i.price*i.qty).toLocaleString('id-ID')}</span></div>`).join('')||'Kosong';}
+function checkout(){if(!cart.length)return alert('Kosong');let txt='Halo FATIR BARNIK, saya mau pesan:%0A'+cart.map(i=>`- ${i.name} x${i.qty}`).join('%0A');window.open('https://wa.me/6281234567890?text='+txt,'_blank');}
+render();renderCart();
+</script></body></html>
