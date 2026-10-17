@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FATIR BARNIK - Pusat pralatan rumah tangga dll</title>
+<title>FATIR BARNIK - Perabot & Peralatan Rumah Tangga</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
@@ -21,30 +21,34 @@
 <a href="https://wa.me/6289682006784" class="bg-white text-green-700 px-4 py-2 rounded-full font-bold">Chat WA</a>
 </div>
 </div>
-<div class="p-4 max-w-6xl mx-auto"><input id="search" oninput="render()" placeholder="Cari botol, kipas, rak piring..." class="w-full bg-white border rounded-full px-4 py-2.5 text-sm"></div>
+<div class="p-4 max-w-6xl mx-auto"><input id="search" oninput="render()" placeholder="Cari barnik, ember, sapu, rak..." class="w-full bg-white border rounded-full px-4 py-2.5 text-sm"></div>
 <div class="px-4 flex gap-2 overflow-auto pb-2 max-w-6xl mx-auto">
 <button onclick="setK('semua')" id="ksemua" class="bg-green-600 text-white px-4 py-2 rounded-full text-xs">Semua</button>
-<button onclick="setK('botol')" id="kbotol" class="bg-white border px-4 py-2 rounded-full text-xs">Botol</button>
-<button onclick="setK('kipas')" id="kkipas" class="bg-white border px-4 py-2 rounded-full text-xs">Kipas</button>
+<button onclick="setK('barnik')" id="kbarnik" class="bg-white border px-4 py-2 rounded-full text-xs">Barnik</button>
 <button onclick="setK('dapur')" id="kdapur" class="bg-white border px-4 py-2 rounded-full text-xs">Dapur</button>
-<button onclick="setK('perkakas')" id="kperkakas" class="bg-white border px-4 py-2 rounded-full text-xs">Perkakas</button>
+<button onclick="setK('kebersihan')" id="kkebersihan" class="bg-white border px-4 py-2 rounded-full text-xs">Kebersihan</button>
+<button onclick="setK('rumah')" id="krumah" class="bg-white border px-4 py-2 rounded-full text-xs">Rumah</button>
 </div>
 <div id="grid" class="p-4 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-6xl mx-auto"></div>
 <div id="cart" class="fixed inset-0 bg-black/50 hidden z-50"><div class="bg-white h-full max-w-md ml-auto flex flex-col"><div class="p-4 border-b flex justify-between"><b>Keranjang (<span id="c2">0</span>)</b><button onclick="document.getElementById('cart').classList.add('hidden')">X</button></div><div id="list" class="flex-1 overflow-auto p-4 space-y-2"></div><div class="p-4 border-t bg-gray-50"><input id="nama" placeholder="Nama Anda" class="w-full border rounded-xl p-3 text-sm mb-2"><div class="flex justify-between font-bold mb-3"><span>Total</span><span id="total" class="text-green-600">Rp 0</span></div><button onclick="checkout()" class="w-full bg-green-600 text-white py-3 rounded-full font-bold text-sm">Pesan via WA</button></div></div></div>
-<div id="admin" class="fixed inset-0 bg-black/50 hidden z-50 p-4 overflow-auto"><div class="bg-white max-w-md mx-auto rounded-2xl p-5 mt-6"><div class="flex justify-between mb-3"><b>Admin PIN:1234</b><button onclick="document.getElementById('admin').classList.add('hidden')">X</button></div><input id="pin" type="password" placeholder="PIN" class="w-full border rounded-xl p-3 text-sm mb-2"><button id="btnPin" onclick="if(document.getElementById('pin').value=='1234'){document.getElementById('form').classList.remove('hidden');this.style.display='none'}else alert('PIN salah')" class="w-full bg-black text-white py-2 rounded-full text-sm mb-3">Buka Panel</button><div id="form" class="hidden"><div class="bg-gray-50 p-3 rounded-xl space-y-2 mb-3"><label class="text-xs font-bold">📸 Foto dari galeri:</label><input id="pfile" type="file" accept="image/*" class="w-full text-xs bg-white p-2 border rounded-lg"><img id="preview" class="hidden w-full h-32 object-contain bg-white rounded-lg mt-2 border"><input id="pn" placeholder="Nama produk" class="w-full border rounded-lg p-2.5 text-sm"><input id="ph" type="number" placeholder="Harga" class="w-full border rounded-lg p-2.5 text-sm"><select id="pk" class="w-full border rounded-lg p-2.5 text-sm"><option value="botol">Botol</option><option value="kipas">Kipas</option><option value="dapur">Dapur</option><option value="perkakas">Perkakas</option><option value="lain">Lain</option></select><button onclick="add()" class="w-full bg-green-600 text-white py-2.5 rounded-full text-sm font-bold">+ Tambah</button></div><div id="alist" class="space-y-2 max-h-96 overflow-auto"></div></div></div></div>
+<div id="admin" class="fixed inset-0 bg-black/50 hidden z-50 p-4 overflow-auto"><div class="bg-white max-w-md mx-auto rounded-2xl p-5 mt-6"><div class="flex justify-between mb-3"><b>Admin PIN:1234</b><button onclick="document.getElementById('admin').classList.add('hidden')">X</button></div><input id="pin" type="password" placeholder="PIN" class="w-full border rounded-xl p-3 text-sm mb-2"><button onclick="if(document.getElementById('pin').value=='1234'){document.getElementById('form').classList.remove('hidden');this.style.display='none'}else alert('PIN salah')" class="w-full bg-black text-white py-2 rounded-full text-sm mb-3">Buka Panel</button><div id="form" class="hidden"><div class="bg-gray-50 p-3 rounded-xl space-y-2 mb-3"><label class="text-xs font-bold">📸 Foto dari galeri:</label><input id="pfile" type="file" accept="image/*" class="w-full text-xs bg-white p-2 border rounded-lg"><img id="preview" class="hidden w-full h-32 object-contain bg-white rounded-lg mt-2 border"><input id="pn" placeholder="Nama produk" class="w-full border rounded-lg p-2.5 text-sm"><input id="ph" type="number" placeholder="Harga" class="w-full border rounded-lg p-2.5 text-sm"><select id="pk" class="w-full border rounded-lg p-2.5 text-sm"><option value="barnik">Barnik</option><option value="dapur">Dapur</option><option value="kebersihan">Kebersihan</option><option value="rumah">Rumah</option></select><button onclick="add()" class="w-full bg-green-600 text-white py-2.5 rounded-full text-sm font-bold">+ Tambah</button></div><div id="alist" class="space-y-2 max-h-96 overflow-auto"></div></div></div></div>
 <script>
+// AUTO HAPUS DATA LAMA YANG ADA PLASTIK - FIX KERANJANG
+localStorage.removeItem('fb3_p');
+localStorage.removeItem('fb3_c');
+
 let defs=[
-{id:1,nama:"Botol Minum Warna 4pcs",harga:25000,kat:"botol",img:"🧴"},
-{id:2,nama:"Kunci Socket 40pcs Combination",harga:85000,kat:"perkakas",img:"🔧"},
-{id:3,nama:"Rak Piring 2 Susun",harga:75000,kat:"dapur",img:"🍽️"},
-{id:4,nama:"Kipas Mini Genggam LED Doraemon",harga:18000,kat:"kipas",img:"🌀"},
-{id:5,nama:"Mangkok Kaca Set 9pcs",harga:65000,kat:"dapur",img:"🥣"},
-{id:6,nama:"Kipas Emergency Arashi",harga:125000,kat:"kipas",img:"💨"},
-{id:7,nama:"Barnik Merah Jumbo",harga:8000,kat:"dapur",img:"🧺"},
-{id:8,nama:"Plastik Bening 1kg",harga:18000,kat:"dapur",img:"📦"}
+{id:1,nama:"Barnik Jumbo Merah",harga:15000,kat:"barnik",img:"🧺"},
+{id:2,nama:"Ember Besar + Gayung",harga:25000,kat:"kebersihan",img:"🪣"},
+{id:3,nama:"Rak Piring 2 Susun Stainless",harga:75000,kat:"dapur",img:"🍽️"},
+{id:4,nama:"Sapu Lantai + Pengki Set",harga:22000,kat:"kebersihan",img:"🧹"},
+{id:5,nama:"Toples Kaca Set Isi 3",harga:45000,kat:"dapur",img:"🫙"},
+{id:6,nama:"Keranjang Laundry Tutup",harga:35000,kat:"barnik",img:"🧺"},
+{id:7,nama:"Pel Lantai Peras",harga:38000,kat:"kebersihan",img:"🧹"},
+{id:8,nama:"Rak Sepatu Susun 4",harga:55000,kat:"rumah",img:"👟"}
 ];
-let produk=JSON.parse(localStorage.getItem('fb3_p')||'null')||defs;
-let cart=JSON.parse(localStorage.getItem('fb3_c')||'[]');
+let produk=defs;
+let cart=[];
 let kat='semua';let tempImg='';
 document.getElementById('pfile').addEventListener('change',function(e){
 let f=e.target.files[0];if(!f)return;
@@ -52,7 +56,7 @@ let r=new FileReader();r.onload=function(ev){tempImg=ev.target.result;let pv=doc
 });
 function save(){localStorage.setItem('fb3_p',JSON.stringify(produk));localStorage.setItem('fb3_c',JSON.stringify(cart))}
 function rp(n){return 'Rp '+n.toLocaleString('id-ID')}
-function setK(k){kat=k;document.querySelectorAll('[id^=k]').forEach(b=>b.className='bg-white border px-4 py-2 rounded-full text-xs');document.getElementById('k'+k).className='bg-green-600 text-white px-4 py-2 rounded-full text-xs';render()}
+function setK(k){kat=k;document.querySelectorAll('[id^=k]').forEach(b=>b.className='bg-white border px-4 py-2 rounded-full text-xs');let el=document.getElementById('k'+k);if(el)el.className='bg-green-600 text-white px-4 py-2 rounded-full text-xs';render()}
 function render(){
 let g=document.getElementById('grid');g.innerHTML='';
 let q=document.getElementById('search').value.toLowerCase();
@@ -65,11 +69,4 @@ function addC(id){let p=produk.find(x=>x.id==id);let c=cart.find(x=>x.id==id);if
 function up(){let co=cart.reduce((a,b)=>a+b.qty,0);document.getElementById('c1').innerText=co;document.getElementById('c2').innerText=co;let t=0,h='';cart.forEach((it,i)=>{t+=it.harga*it.qty;h+=`<div class="bg-gray-50 p-3 rounded-xl flex justify-between"><div class="flex gap-2"><div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center overflow-hidden">${it.img.startsWith('data:')||it.img.startsWith('http')?`<img src="${it.img}" class="w-full h-full object-contain">`:`<span>${it.img}</span>`}</div><div><p class="text-sm font-semibold">${it.nama}</p><p class="text-xs">${rp(it.harga)} x ${it.qty}</p><div class="flex gap-2 mt-1"><button onclick="ch(${i},-1)" class="w-6 h-6 bg-white border rounded-full">-</button><span class="text-sm">${it.qty}</span><button onclick="ch(${i},1)" class="w-6 h-6 bg-white border rounded-full">+</button></div></div></div><button onclick="rm(${i})" class="text-red-500 text-xs">Hapus</button></div>`});document.getElementById('list').innerHTML=h||'<p class="text-center text-gray-400 mt-20">Kosong</p>';document.getElementById('total').innerText=rp(t)}
 function ch(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);save();up()}
 function rm(i){cart.splice(i,1);save();up()}
-function add(){let n=document.getElementById('pn').value;let h=parseInt(document.getElementById('ph').value);let k=document.getElementById('pk').value;let im=tempImg||'📦';if(!n||!h)return alert('Isi nama & harga!');produk.unshift({id:Date.now(),nama:n,harga:h,kat:k,img:im});save();render();rA();document.getElementById('pn').value='';document.getElementById('ph').value='';document.getElementById('pfile').value='';document.getElementById('preview').classList.add('hidden');tempImg='';alert('Berhasil ditambah!')}
-function del(id){if(confirm('Hapus?')){produk=produk.filter(p=>p.id!=id);save();render();rA()}}
-function rA(){document.getElementById('alist').innerHTML=produk.map(p=>`<div class="flex gap-2 items-center border p-2 rounded-xl text-xs"><div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">${p.img.startsWith('data:')||p.img.startsWith('http')?`<img src="${p.img}" class="w-full h-full object-contain">`:`<span>${p.img}</span>`}</div><div class="flex-1"><b>${p.nama}</b><br>${p.kat} • ${rp(p.harga)}</div><button onclick="del(${p.id})" class="text-red-500 bg-red-50 px-3 py-1 rounded-full">Hapus</button></div>`).join('')}
-function checkout(){if(!cart.length)return alert('Kosong');let nm=document.getElementById('nama').value||'Pelanggan';let tot=cart.reduce((a,b)=>a+b.harga*b.qty,0);let msg=`Halo Toko Fatir Barnik! Saya ${nm} mau pesan:%0A`+cart.map(c=>`- ${c.nama} x${c.qty} = ${rp(c.harga*c.qty)}`).join('%0A')+`%0ATotal ${rp(tot)}`;window.open('https://wa.me/6289682006784?text='+msg,'_blank')}
-render();up();rA();
-</script>
-</body>
-</html>
+function add(){let n=document.getElementById('pn').value;let h=parseInt(document.getElementById('ph').value);let k=document.getElementById('pk').value;let im=tempImg||'📦';if(!n||!h)return alert('Isi nama & harga!');produk.unshift({id:Date.now(),nama:n,harga:h,kat:k,img:im});save();render();rA
