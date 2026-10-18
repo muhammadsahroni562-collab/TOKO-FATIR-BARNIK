@@ -1,60 +1,15 @@
-<!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Toko Fatir Barnik</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#F6F8FF;color:#10244A}
-.top{background:#0A2A5C;color:#fff;padding:8px 16px;font-size:11px;display:flex;justify-content:space-between}
-.head{background:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:20;border-bottom:1px solid #E6EEFF}
-.logo{font-weight:900;color:#0A2A5C} .logo span{color:#0B5ED7}
-.search{flex:1;display:flex;border:1.5px solid #0B5ED7;border-radius:8px;overflow:hidden}
-.search input{flex:1;border:none;padding:10px;outline:none}
-.search button{background:#0B5ED7;color:#fff;border:none;padding:0 14px}
-.btns{display:flex;gap:10px}.btns button{border:none;background:#F1F5FF;padding:8px 12px;border-radius:8px;font-weight:700}
-.hero{background:linear-gradient(90deg,#E8F3FF,#FFF8CC);padding:18px 16px;display:flex;justify-content:space-between}
-.hero h1{font-size:26px;color:#0A2A5C}.hero h1 span{color:#0B5ED7}
-.nav{background:#0B5ED7;color:#fff;padding:8px 16px;display:flex;gap:14px;font-size:12px;font-weight:600}
-.sec{padding:14px 16px;background:#fff;margin-top:8px}
-.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cat{text-align:center;font-size:11px}.cat div{width:56px;height:56px;background:#E8F0FF;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:24px}
-.banners{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 16px}.bn{border-radius:12px;padding:12px;color:#fff;min-height:90px}
-.bn.red{background:linear-gradient(135deg,#FF3B30,#FF9A00)}.bn.blue{background:linear-gradient(135deg,#0B5ED7,#3EC4FF)}.bn.dark{background:#0A1931}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}.banners{grid-template-columns:1fr}}
-.card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #E6EEFF;position:relative}.card img{width:100%;height:120px;object-fit:cover}
-.card .b{padding:8px}.name{font-size:12px;font-weight:700;height:30px;overflow:hidden}.price{color:#FF2D2D;font-weight:800;font-size:12px}.price s{color:#888;font-weight:400;font-size:10px}
-.add{width:100%;background:#0B5ED7;color:#fff;border:none;padding:6px;border-radius:6px;font-size:11px;font-weight:700;margin-top:6px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:99;padding:12px}.modal.show{display:flex}.sheet{background:#fff;width:100%;max-width:440px;border-radius:14px;padding:14px;max-height:90vh;overflow:auto}
-.sheet input{width:100%;padding:10px;border:1.5px solid #D6DDF0;border-radius:8px;margin-top:6px}.sheet label{font-size:11px;font-weight:700;margin-top:8px;display:block}
-.pv{width:100%;height:180px;object-fit:cover;border-radius:8px;display:none;margin-top:6px}.save{width:100%;background:#0B5ED7;color:#fff;padding:12px;border:none;border-radius:8px;font-weight:800;margin-top:10px}
-.cart{position:fixed;bottom:0;right:0;width:100%;max-width:380px;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.2);transform:translateY(110%);transition:.3s;z-index:98;max-height:85vh;display:flex;flex-direction:column}.cart.show{transform:translateY(0)}.cart h3{padding:12px;border-bottom:1px solid #eee}.cart-list{flex:1;overflow:auto;padding:10px}.cart-foot{padding:10px;border-top:1px solid #eee}
-.item{display:flex;gap:8px;align-items:center;background:#F6F8FF;padding:6px;border-radius:8px;margin-top:6px;font-size:12px}.item img{width:40px;height:40px;border-radius:6px;object-fit:cover}
-</style></head><body>
-<div class="top"><span>Toko Fatir Barnik</span><span>WA: 089682006784</span></div>
-<div class="head"><div class="logo">Toko <span>Fatir Barnik</span></div><div class="search"><input id="q" placeholder="Cari produk..." oninput="render()"><button>🔍</button></div><div class="btns"><button onclick="openCart()">🛒 <span id="cnt">0</span></button><button onclick="openAdmin()">⚙️ Admin</button></div></div>
-<div class="nav"><span>☰ Semua Kategori</span><span>Beranda</span><span>Produk</span><span>Promo</span></div>
-<div class="hero"><div><h3>Selamat Datang di</h3><h1>Toko <span>Fatir Barnik</span></h1><p>Belanja Hemat, Pilihan Tepat!</p><a href="https://wa.me/6289682006784" style="background:#25D366;color:#fff;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:800;display:inline-block;margin-top:8px;font-size:12px">💬 Chat WA</a></div><div style="font-size:50px">🛒</div></div>
-<div class="sec"><b>Kategori Pilihan</b><div class="cats" style="margin-top:10px"><div class="cat"><div>🔌</div>Elektronik</div><div class="cat"><div>👕</div>Pakaian</div><div class="cat"><div>👟</div>Sepatu</div><div class="cat"><div>👜</div>Tas</div><div class="cat"><div>🏠</div>Rumah</div></div></div>
-<div class="banners"><div class="bn red"><b>DISKON SPESIAL</b><div style="font-size:11px">Produk pilihan harga terbaik</div></div><div class="bn blue"><b>GRATIS ONGKIR</b><div style="font-size:11px">Min. belanja 150rb</div></div><div class="bn dark"><b>Pembayaran Aman</b><div style="font-size:11px">Transfer, QRIS, COD</div></div></div>
-<div class="sec"><b>🔥 Produk Terlaris</b><div class="grid" id="grid" style="margin-top:10px"></div></div><div class="modal" id="adminM" onclick="if(event.target==this)closeAdmin()"><div class="sheet">
-<h3>Admin - Tambah Barang dari Galeri</h3>
-<label>Foto dari Galeri HP</label><input type="file" id="fF" accept="image/*" onchange="prev(this)"><img id="pv" class="pv"><div id="fInfo" style="font-size:11px;color:green;display:none">Foto siap</div>
-<label>Nama Produk</label><input id="fN" placeholder="Ember Jumbo">
-<label>Harga Asli</label><input id="fH" type="number" placeholder="50000">
-<label>Harga Diskon</label><input id="fD" type="number" placeholder="45000">
-<label>Diskon %</label><input id="fP" type="number" placeholder="10">
-<input type="hidden" id="fI">
-<button class="save" onclick="saveP()">SIMPAN KE TOKO</button>
-<button onclick="closeAdmin()" style="width:100%;margin-top:6px;padding:10px;border:none;background:#eee;border-radius:8px">Tutup</button>
-<div id="aList" style="margin-top:10px"></div>
-</div></div>
-<div class="cart" id="cartBox"><h3>Keranjang (<span id="cnt2">0</span>) <button onclick="closeCart()" style="float:right;border:none;background:#eee;padding:4px 10px;border-radius:999px">X</button></h3><div class="cart-list" id="cList"></div><div class="cart-foot"><div id="cTot" style="font-weight:800"></div><input id="cNm" placeholder="Nama" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;margin-top:6px"><input id="cAl" placeholder="Alamat" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;margin-top:4px"><button onclick="checkout()" style="width:100%;background:#0B5ED7;color:#fff;padding:12px;border:none;border-radius:8px;font-weight:800;margin-top:6px">Checkout WA 089682006784</button></div></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Toko Fatir Barnik</title><style>body{font-family:system-ui;background:#F6F8FF;margin:0}.h{background:#0B5ED7;color:#fff;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:10}.card{background:#fff;margin:8px;border-radius:12px;overflow:hidden;border:1px solid #ddd}.card img{width:100%;height:130px;object-fit:cover}.b{padding:8px}button{background:#0B5ED7;color:#fff;border:none;padding:8px;border-radius:8px;width:100%;font-weight:800;margin-top:4px}#cart{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px;border-radius:16px 16px 0 0;display:none;max-height:80vh;overflow:auto;box-shadow:0 -10px 20px rgba(0,0,0,.2);z-index:20}#cart.show{display:block}</style></head><body>
+<div class="h"><b>Toko Fatir Barnik</b><div><button onclick="document.getElementById('cart').classList.toggle('show')" style="width:auto;padding:6px 12px;background:#fff;color:#0B5ED7">🛒 <span id="cnt">0</span></button> <button onclick="document.getElementById('adm').style.display='block'" style="width:auto;padding:6px 12px;background:#FFD;color:#000">⚙️ Admin</button></div></div>
+<div id="grid" style="display:grid;grid-template-columns:1fr 1fr"></div>
+<div id="cart"><h3>Keranjang <button onclick="document.getElementById('cart').classList.remove('show')" style="float:right;width:auto;background:#eee;color:#000">X</button></h3><div id="cList"></div><button onclick="checkout()" style="margin-top:8px">Checkout WA 089682006784</button></div>
+<div id="adm" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);padding:20px;z-index:30"><div style="background:#fff;padding:14px;border-radius:12px"><h3>Tambah Barang Galeri</h3><input type="file" accept="image/*" id="ff"><input id="fn" placeholder="Nama: Ember Jumbo" style="width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:8px"><input id="fh" type="number" placeholder="Harga: 50000" style="width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:8px"><button onclick="addP()" style="margin-top:8px">💾 Simpan ke Toko</button><button onclick="document.getElementById('adm').style.display='none'" style="background:#eee;color:#000;margin-top:6px">Tutup</button></div></div>
 <script>
-const WA='6289682006784';
-let P=JSON.parse(localStorage.getItem('fatir_final')||'null');
-if(!P){P=[
-{nama:'HP Samsung A15',harga:2999000,diskon:2549000,persen:15,foto:'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400'},
-{nama:'Sepatu Sneakers',harga:249000,diskon:199000,persen:20,foto:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400'},
-{nama:'Tas Ransel',harga:159000,diskon:129000,persen:18,foto:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400'},
-{nama:'Blender',harga:329000,diskon:289000,persen:12,foto:'https://images.unsplash.com/photo-1585237672814-8f85a8118bf6?w=400'},
-{nama:'Skincare Set',harga:99000,diskon:89000,persen:10,foto:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400'},
-{nama:'Mobil Remote Anak',harga:189000,diskon:149000,persen:22,foto:'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400'}
-];localStorage.setItem('fatir_final',JSON.stringify(P))}
-let C=[];let TF='';
-function render(){let q=(document.getElementById('q').value||'').toLowerCase();let g=document.getElementById('grid');g.innerHTML=P.filter(p=>p.nama.toLowerCase().includes(q)).map(p=>{let i=P.indexOf(p);return `<div class=card><div style='position:absolute;background:#FF2D2D;color:#fff;font-size:10px;padding:2px 6px;border-radius:6px;margin:6px'>-${p.persen}%</div><img src='${p.foto}'><div class=b><div class=name>${p.nama}</div><div class=price>Rp ${p.diskon.toLocaleString('id-ID')} <s>Rp ${p.harga.toLocaleString('id-ID')}</s></div><button class=add onclick='add(${i})'>Tambah</button><div style='display:flex;gap:4px;margin-top:4px'><button onclick='editP(${i})' style='flex:1;padding:4px;font-size:10px;border:none
+let P=JSON.parse(localStorage.getItem('fatir')||'[]');if(P.length==0){P=[{n:'Ember Jumbo',h:50000,f:'https://images.unsplash.com/photo-1584305575477-0f38d84138a0?w=400'},{n:'Sapu Lidi',h:25000,f:'https://images.unsplash.com/photo-1585237672814-8f85a8118bf6?w=400'},{n:'Botol Minum',h:15000,f:'https://images.unsplash.com/photo-1523369364227-2498f2d03a03?w=400'}];}
+let C=[],TF='';document.getElementById('ff').onchange=e=>{let r=new FileReader();r.onload=x=>TF=x.target.result;r.readAsDataURL(e.target.files[0])};
+function render(){document.getElementById('grid').innerHTML=P.map((p,i)=>`<div class=card><img src="${p.f}"><div class=b><b>${p.n}</b><br>Rp ${p.h.toLocaleString()}<button onclick="add(${i})">🛒 Tambah</button></div></div>`).join('');}
+function add(i){let f=C.find(x=>x.i==i);if(f)f.q++;else C.push({i,q:1});up()}
+function up(){document.getElementById('cnt').innerText=C.reduce((a,b)=>a+b.q,0);document.getElementById('cList').innerHTML=C.map(c=>P[c.i].n+' x'+c.q+' = Rp '+(P[c.i].h*c.q).toLocaleString()).join('<br>')||'Kosong';}
+function addP(){let n=document.getElementById('fn').value;let h=document.getElementById('fh').value;if(!n||!h||!TF)return alert('Isi foto, nama, harga dulu');P.unshift({n,h,f:TF});localStorage.setItem('fatir',JSON.stringify(P));TF='';render();alert('Berhasil masuk toko!');document.getElementById('adm').style.display='none';}
+function checkout(){if(C.length==0)return alert('Keranjang kosong');let t=C.reduce((s,c)=>s+P[c.i].h*c.q,0);let m=C.map(c=>P[c.i].n+' x'+c.q).join('%0A');window.open('https://wa.me/6289682006784?text=Halo saya pesan:%0A'+m+'%0ATotal Rp '+t,'_blank');}
+render();
+</script></body></html>
